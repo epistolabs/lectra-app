@@ -1,13 +1,13 @@
-import speech from '@google-cloud/speech';
+import { SpeechClient } from '@google-cloud/speech';
 import { google } from '@google-cloud/speech/build/protos/protos';
 
 export class SpeechToTextService {
-  private client: speech.SpeechClient;
+  private client: SpeechClient;
 
   constructor() {
     // Initialize the Google Speech client
     // Credentials are loaded from GOOGLE_APPLICATION_CREDENTIALS env variable
-    this.client = new speech.SpeechClient();
+    this.client = new SpeechClient();
   }
 
   /**
@@ -52,7 +52,7 @@ export class SpeechToTextService {
       }
 
       const transcription = response.results
-        .map((result) => result.alternatives?.[0]?.transcript || '')
+        .map((result: any) => result.alternatives?.[0]?.transcript || '')
         .join('\n')
         .trim();
 
@@ -132,7 +132,7 @@ export class SpeechToTextService {
       }
 
       const transcription = response.results
-        .map((result) => result.alternatives?.[0]?.transcript || '')
+        .map((result: any) => result.alternatives?.[0]?.transcript || '')
         .join('\n')
         .trim();
 

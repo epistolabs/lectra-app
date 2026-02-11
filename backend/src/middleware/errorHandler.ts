@@ -10,9 +10,9 @@ export interface ApiError extends Error {
  */
 export const errorHandler = (
   err: ApiError,
-  req: Request,
+  _req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ): void => {
   console.error('Error:', err);
 
@@ -31,7 +31,7 @@ export const errorHandler = (
  */
 export const notFoundHandler = (
   req: Request,
-  res: Response,
+  _res: Response,
   next: NextFunction
 ): void => {
   const error: ApiError = new Error(`Route not found: ${req.originalUrl}`);

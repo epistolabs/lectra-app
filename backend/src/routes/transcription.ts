@@ -61,7 +61,7 @@ router.post(
     }
 
     // Return successful transcription
-    res.status(200).json({
+    return res.status(200).json({
       status: 'success',
       transcription: transcription,
       metadata: {
@@ -78,7 +78,7 @@ router.post(
  * GET /api/transcription/health
  * Health check endpoint
  */
-router.get('/health', (req: Request, res: Response) => {
+router.get('/health', (_req: Request, res: Response) => {
   res.status(200).json({
     status: 'success',
     message: 'Transcription service is running',

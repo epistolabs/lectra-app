@@ -28,7 +28,7 @@ const ALLOWED_MIME_TYPES = [
 
 // File filter function
 const fileFilter = (
-  req: Request,
+  _req: Request,
   file: Express.Multer.File,
   cb: multer.FileFilterCallback
 ) => {
@@ -58,7 +58,7 @@ export const upload = multer({
  */
 export const validateFileUpload = (
   req: Request,
-  res: Response,
+  _res: Response,
   next: NextFunction
 ): void => {
   if (!req.file) {
@@ -84,8 +84,8 @@ export const validateFileUpload = (
  */
 export const handleMulterError = (
   err: any,
-  req: Request,
-  res: Response,
+  _req: Request,
+  _res: Response,
   next: NextFunction
 ): void => {
   if (err instanceof multer.MulterError) {
