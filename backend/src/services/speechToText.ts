@@ -14,11 +14,13 @@ export class SpeechToTextService {
    * Transcribes audio buffer using Google Speech-to-Text API
    * @param audioBuffer - Audio file buffer
    * @param mimeType - Audio MIME type (e.g., 'audio/wav', 'audio/mpeg')
+   * @param languageCode - Language code for transcription (e.g., 'en-US', 'es-ES')
    * @returns Transcribed text
    */
   async transcribeAudio(
     audioBuffer: Buffer,
-    mimeType: string = 'audio/wav'
+    mimeType: string = 'audio/wav',
+    languageCode: string = 'en-US'
   ): Promise<string> {
     try {
       // Detect audio encoding from MIME type
@@ -32,7 +34,7 @@ export class SpeechToTextService {
       const config: google.cloud.speech.v1.IRecognitionConfig = {
         encoding: encoding,
         sampleRateHertz: 16000, // Default sample rate
-        languageCode: 'en-US',
+        languageCode: languageCode,
         enableAutomaticPunctuation: true,
         model: 'default',
         useEnhanced: true,
@@ -98,7 +100,8 @@ export class SpeechToTextService {
    */
   async transcribeLongAudio(
     audioBuffer: Buffer,
-    mimeType: string = 'audio/wav'
+    mimeType: string = 'audio/wav',
+    languageCode: string = 'en-US'
   ): Promise<string> {
     try {
       const encoding = this.getEncodingFromMimeType(mimeType);
@@ -110,7 +113,7 @@ export class SpeechToTextService {
       const config: google.cloud.speech.v1.IRecognitionConfig = {
         encoding: encoding,
         sampleRateHertz: 16000,
-        languageCode: 'en-US',
+        languageCode: languageCode,
         enableAutomaticPunctuation: true,
         model: 'default',
         useEnhanced: true,
